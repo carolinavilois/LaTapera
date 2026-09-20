@@ -1,0 +1,202 @@
+using System.Collections;
+using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+// Monólogo de una línea junto a la fogata, con el mismo formato de Escena 0.
+// Primera vez muestra firstLine; visitas siguientes muestran secondLine.
+// E/click: completa typewriter, luego cierra el panel.
+public class FogataMonologue : MonoBehaviour
+{
+    [Header("UI diálogo (panel oculto por defecto)")]
+    [SerializeField] GameObject dialogPanel;
+    [SerializeField] TMP_Text speakerText;
+    [SerializeField] TMP_Text bodyText;
+
+    [Header("Jugador (vacío = busca tag Player)")]
+    [SerializeField] Transform player;
+    [SerializeField] float interactDistance = 3.5f;
+
+    [Header("Bloqueo movimiento (vacío = lo busca en el jugador)")]
+    [SerializeField] PlayerMovement playerMovement;
+
+    [Header("Textos")]
+    [SerializeField] DialogueLine firstLine = new DialogueLine
+    {
+        speaker = "PRUDENCIO",
+        text = "Los paisanos estarán por venir. Mejor llegar con un poco más de leña para el fogón. Voy a buscar por el monte."
+    };
+    [SerializeField] DialogueLine secondLine = new DialogueLine
+    {
+        speaker = "PRUDENCIO",
+        text = "Aún me falta leña. Voy a seguir buscando."
+    };
+
+    [Header("Ajustes")]
+    [SerializeField] float charsPerSecond = 40f;
+
+    // Flag global: frena al Player aunque falle la referencia del inspector.
+    public static bool DialogueOpen { get; private set; }
+
+    // Aviso al cerrar el panel (ej: para ocultar el HUD al terminar el monólogo final).
+    public event System.Action onPanelClosed;
+
+    bool shownFirst;
+    bool panelOpen;
+    bool isTyping;
+    string fullText = "";
+    Coroutine typeRoutine;
+
+    void Awake()
+    {
+        if (player == null)
+        {
+            var p = GameObject.FindGameObjectWithTag("Player");
+            if (p != null) player = p.transform;
+        }
+
+        if (playerMovement == null && player != null)
+            playerMovement = player.GetComponent<PlayerMovement>();
+
+        ClearTexts();
+        SetPanel(false);
+    }
+
+    void Update()
+    {
+        if (panelOpen)
+        {
+            if (WasAdvancePressed())
+            {
+                if (isTyping) CompleteLine();
+                else ClosePanel();
+            }
+            return;
+        }
+
+        if (player == null) return;
+        if (Vector3.Distance(player.position, transform.position) > interactDistance)
+            return;
+
+        var kb = Keyboard.current;
+        if (kb != null && kb.eKey.wasPressedThisFrame)
+            OpenPanel();
+    }
+
+    void OpenPanel()
+    {
+        var line = shownFirst ? secondLine : firstLine;
+        shownFirst = true;
+
+        if (speakerText != null) speakerText.text = line != null ? line.speaker : "";
+        fullText = line != null && line.text != null ? line.text : "";
+
+        SetPanel(true);
+        panelOpen = true;
+        DialogueOpen = true;
+        SetMovement(false);
+
+        if (typeRoutine != null) StopCoroutine(typeRoutine);
+        typeRoutine = StartCoroutine(TypeLine(fullText));
+    }
+
+    void ClosePanel()
+    {
+        panelOpen = false;
+        DialogueOpen = false;
+        SetPanel(false);
+        SetMovement(true);
+        onPanelClosed?.Invoke();
+        onPanelClosed = null;
+    }
+
+    // Muestra una línea externa (ej: monólogo al completar la leña).
+    // Reusa panel, typewriter y congelamiento. No toca la secuencia texto1→texto2.
+    public void ShowExternalLine(string speaker, string text)
+    {
+        if (panelOpen)
+            return;
+
+        if (speakerText != null) speakerText.text = speaker != null ? speaker : "";
+        fullText = text != null ? text : "";
+
+        SetPanel(true);
+        panelOpen = true;
+        DialogueOpen = true;
+        SetMovement(false);
+
+        if (typeRoutine != null) StopCoroutine(typeRoutine);
+        typeRoutine = StartCoroutine(TypeLine(fullText));
+    }
+
+    void OnDisable()
+    {
+        DialogueOpen = false;
+        SetMovement(true);
+    }
+
+    void SetMovement(bool enabled)
+    {
+        if (playerMovement != null)
+            playerMovement.enabled = enabled;
+    }
+
+    IEnumerator TypeLine(string text)
+    {
+        isTyping = true;
+        if (bodyText != null) bodyText.text = "";
+
+        float interval = charsPerSecond > 0 ? 1f / charsPerSecond : 0.01f;
+        int count = 0;
+        while (count < text.Length)
+        {
+            count++;
+            if (bodyText != null) bodyText.text = text.Substring(0, count);
+            yield return new WaitForSeconds(interval);
+        }
+
+        isTyping = false;
+        typeRoutine = null;
+    }
+
+    void CompleteLine()
+    {
+        if (typeRoutine != null) StopCoroutine(typeRoutine);
+        typeRoutine = null;
+        isTyping = false;
+        if (bodyText != null) bodyText.text = fullText;
+    }
+
+    bool WasAdvancePressed()
+    {
+        var kb = Keyboard.current;
+        if (kb != null && (kb.spaceKey.wasPressedThisFrame ||
+            kb.enterKey.wasPressedThisFrame ||
+            kb.eKey.wasPressedThisFrame ||
+            kb.numpadEnterKey.wasPressedThisFrame))
+            return true;
+
+        var mouse = Mouse.current;
+        if (mouse != null && mouse.leftButton.wasPressedThisFrame)
+            return true;
+
+        var touch = Touchscreen.current;
+        if (touch != null && touch.primaryTouch.press.wasPressedThisFrame)
+            return true;
+
+        return false;
+    }
+
+    void ClearTexts()
+    {
+        if (speakerText != null) speakerText.text = "";
+        if (bodyText != null) bodyText.text = "";
+        fullText = "";
+    }
+
+    void SetPanel(bool visible)
+    {
+        if (dialogPanel != null)
+            dialogPanel.SetActive(visible);
+    }
+}
