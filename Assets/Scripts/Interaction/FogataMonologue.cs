@@ -17,6 +17,10 @@ public class FogataMonologue : MonoBehaviour
     [SerializeField] Transform player;
     [SerializeField] float interactDistance = 3.5f;
 
+    [Header("Apertura automática (primer diálogo, sin E)")]
+    [SerializeField] bool autoOpenFirstLine = true;
+    [SerializeField] float autoOpenDistance = 7f;
+
     [Header("Bloqueo movimiento (vacío = lo busca en el jugador)")]
     [SerializeField] PlayerMovement playerMovement;
 
@@ -75,7 +79,17 @@ public class FogataMonologue : MonoBehaviour
         }
 
         if (player == null) return;
-        if (Vector3.Distance(player.position, transform.position) > interactDistance)
+
+        float distToFogata = Vector3.Distance(player.position, transform.position);
+
+        // Primer diálogo: se abre solo al acercarse (más lejos), sin pulsar E.
+        if (autoOpenFirstLine && !shownFirst && distToFogata <= autoOpenDistance)
+        {
+            OpenPanel();
+            return;
+        }
+
+        if (distToFogata > interactDistance)
             return;
 
         var kb = Keyboard.current;
