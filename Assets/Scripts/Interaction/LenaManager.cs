@@ -19,10 +19,21 @@ public class LenaManager : MonoBehaviour
 
     int count;
     bool completed;
+    bool hudShown;
 
     void Awake()
     {
         UpdateHud();
+    }
+
+    void Update()
+    {
+        // El HUD aparece recién después del primer diálogo automático de la fogata.
+        if (!hudShown && hudText != null && FogataMonologue.FirstDialogueDone)
+        {
+            hudShown = true;
+            hudText.gameObject.SetActive(true);
+        }
     }
 
     public void AddOne()

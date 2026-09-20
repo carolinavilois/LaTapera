@@ -106,25 +106,8 @@ public class DialogueManager : MonoBehaviour
 
     bool WasAdvancePressed()
     {
-        var kb = Keyboard.current;
-        if (kb != null)
-        {
-            if (kb.spaceKey.wasPressedThisFrame ||
-                kb.enterKey.wasPressedThisFrame ||
-                kb.eKey.wasPressedThisFrame ||
-                kb.numpadEnterKey.wasPressedThisFrame)
-                return true;
-        }
-
-        var mouse = Mouse.current;
-        if (mouse != null && mouse.leftButton.wasPressedThisFrame)
-            return true;
-
-        var touch = Touchscreen.current;
-        if (touch != null && touch.primaryTouch.press.wasPressedThisFrame)
-            return true;
-
-        return false;
+        // Avance solo con click/tap (sin teclas).
+        return ClickHelper.WasClickPressed();
     }
 
     public void Advance()

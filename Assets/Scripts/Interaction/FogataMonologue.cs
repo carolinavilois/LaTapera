@@ -15,7 +15,7 @@ public class FogataMonologue : MonoBehaviour
 
     [Header("Jugador (vacío = busca tag Player)")]
     [SerializeField] Transform player;
-    [SerializeField] float interactDistance = 3.5f;
+    [SerializeField] float interactDistance = 5f;
 
     [Header("Apertura automática (primer diálogo, sin E)")]
     [SerializeField] bool autoOpenFirstLine = true;
@@ -41,6 +41,11 @@ public class FogataMonologue : MonoBehaviour
 
     // Flag global: frena al Player aunque falle la referencia del inspector.
     public static bool DialogueOpen { get; private set; }
+
+    // Primer diálogo automático ya visto (habilita HUD y recolección de leña).
+    public static bool FirstDialogueDone { get; private set; }
+
+    bool showingFirstLine;
 
     // Aviso al cerrar el panel (ej: para ocultar el HUD al terminar el monólogo final).
     public event System.Action onPanelClosed;
@@ -92,13 +97,13 @@ public class FogataMonologue : MonoBehaviour
         if (distToFogata > interactDistance)
             return;
 
-        var kb = Keyboard.current;
-        if (kb != null && kb.eKey.wasPressedThisFrame)
+        if (ClickHelper.WasClickedOn(transform))
             OpenPanel();
     }
 
     void OpenPanel()
     {
+        showingFirstLine = !shownFirst;
         var line = shownFirst ? secondLine : firstLine;
         shownFirst = true;
 
@@ -120,6 +125,11 @@ public class FogataMonologue : MonoBehaviour
         DialogueOpen = false;
         SetPanel(false);
         SetMovement(true);
+        if (showingFirstLine)
+        {
+            showingFirstLine = false;
+            FirstDialogueDone = true;
+        }
         onPanelClosed?.Invoke();
         onPanelClosed = null;
     }
@@ -133,6 +143,7 @@ public class FogataMonologue : MonoBehaviour
 
         if (speakerText != null) speakerText.text = speaker != null ? speaker : "";
         fullText = text != null ? text : "";
+        showingFirstLine = false;
 
         SetPanel(true);
         panelOpen = true;
@@ -183,22 +194,8 @@ public class FogataMonologue : MonoBehaviour
 
     bool WasAdvancePressed()
     {
-        var kb = Keyboard.current;
-        if (kb != null && (kb.spaceKey.wasPressedThisFrame ||
-            kb.enterKey.wasPressedThisFrame ||
-            kb.eKey.wasPressedThisFrame ||
-            kb.numpadEnterKey.wasPressedThisFrame))
-            return true;
-
-        var mouse = Mouse.current;
-        if (mouse != null && mouse.leftButton.wasPressedThisFrame)
-            return true;
-
-        var touch = Touchscreen.current;
-        if (touch != null && touch.primaryTouch.press.wasPressedThisFrame)
-            return true;
-
-        return false;
+        // Avance solo con click/tap (sin teclas).
+        return ClickHelper.WasClickPressed();
     }
 
     void ClearTexts()

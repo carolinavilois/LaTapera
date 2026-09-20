@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
-// Interacción mínima de la tranquera: E cerca → sonido → 1s → escena del rancho.
+// Interacción mínima de la tranquera: click en el sprite cerca → sonido → 1s → rancho.
 // Sin UI, sin Canvas, sin billboard.
 public class TranqueraSwitch : MonoBehaviour
 {
@@ -46,8 +46,7 @@ public class TranqueraSwitch : MonoBehaviour
         if (Vector3.Distance(player.position, transform.position) > interactDistance)
             return;
 
-        var kb = Keyboard.current;
-        if (kb != null && kb.eKey.wasPressedThisFrame)
+        if (ClickHelper.WasClickedOn(transform))
             StartCoroutine(OpenRoutine());
     }
 

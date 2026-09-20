@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 160829407}
   - component: {fileID: 2070000031}
   - component: {fileID: 2070000032}
+  - component: {fileID: 2070000033}
   m_Layer: 0
   m_Name: Placeholder_palo (2)
   m_TagString: Untagged
@@ -979,6 +980,7 @@ GameObject:
   - component: {fileID: 683497555}
   - component: {fileID: 2070000011}
   - component: {fileID: 2070000012}
+  - component: {fileID: 2070000013}
   m_Layer: 0
   m_Name: Placeholder_palo
   m_TagString: Untagged
@@ -1482,6 +1484,7 @@ GameObject:
   - component: {fileID: 1063672278}
   - component: {fileID: 2070000021}
   - component: {fileID: 2070000022}
+  - component: {fileID: 2070000023}
   m_Layer: 0
   m_Name: Placeholder_palo (1)
   m_TagString: Untagged
@@ -2304,6 +2307,7 @@ GameObject:
   - component: {fileID: 2010225390}
   - component: {fileID: 2070000041}
   - component: {fileID: 2070000042}
+  - component: {fileID: 2070000043}
   m_Layer: 0
   m_Name: Placeholder_palo (3)
   m_TagString: Untagged
@@ -2455,6 +2459,7 @@ GameObject:
   - component: {fileID: 2044580402}
   - component: {fileID: 2070000051}
   - component: {fileID: 2070000052}
+  - component: {fileID: 2070000053}
   m_Layer: 0
   m_Name: Placeholder_palo (4)
   m_TagString: Untagged
@@ -3029,7 +3034,7 @@ MonoBehaviour:
   speakerText: {fileID: 2060000042}
   bodyText: {fileID: 2060000052}
   player: {fileID: 135015115}
-  interactDistance: 3.5
+  interactDistance: 5
   playerMovement: {fileID: 135015117}
   firstLine:
     speaker: PRUDENCIO
@@ -3066,7 +3071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LenaPickup
   manager: {fileID: 2070000062}
   player: {fileID: 135015115}
-  pickupDistance: 2
+  pickupDistance: 5
 --- !u!114 &2070000021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3094,7 +3099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LenaPickup
   manager: {fileID: 2070000062}
   player: {fileID: 135015115}
-  pickupDistance: 2
+  pickupDistance: 5
 --- !u!114 &2070000031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3122,7 +3127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LenaPickup
   manager: {fileID: 2070000062}
   player: {fileID: 135015115}
-  pickupDistance: 2
+  pickupDistance: 5
 --- !u!114 &2070000041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3150,7 +3155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LenaPickup
   manager: {fileID: 2070000062}
   player: {fileID: 135015115}
-  pickupDistance: 2
+  pickupDistance: 5
 --- !u!114 &2070000051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3165,7 +3170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LenaPickup
   manager: {fileID: 2070000062}
   player: {fileID: 135015115}
-  pickupDistance: 2
+  pickupDistance: 5
 --- !u!114 &2070000052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3246,7 +3251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2070000071
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3480,6 +3485,111 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 884e40ae49b581449b88e5fc6f12bd71, type: 3}
+--- !u!65 &2070000013
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683497554}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2070000023
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063672277}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2070000033
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160829406}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2070000043
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010225389}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &2070000053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044580401}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

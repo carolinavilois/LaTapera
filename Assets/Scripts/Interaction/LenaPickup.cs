@@ -10,7 +10,7 @@ public class LenaPickup : MonoBehaviour
     [SerializeField] Transform player;
 
     [Header("Ajustes")]
-    [SerializeField] float pickupDistance = 2f;
+    [SerializeField] float pickupDistance = 5f;
 
     bool collected;
 
@@ -31,11 +31,14 @@ public class LenaPickup : MonoBehaviour
         if (FogataMonologue.DialogueOpen)
             return;
 
+        // Sin el primer diálogo de la fogata no se puede recolectar.
+        if (!FogataMonologue.FirstDialogueDone)
+            return;
+
         if (Vector3.Distance(player.position, transform.position) > pickupDistance)
             return;
 
-        var kb = Keyboard.current;
-        if (kb != null && kb.eKey.wasPressedThisFrame)
+        if (ClickHelper.WasClickedOn(transform))
             Collect();
     }
 
