@@ -15,10 +15,15 @@ public class PlayerMovement: MonoBehaviour
 
     void Update()
     {
-        // Freno global mientras haya diálogo abierto (fogata). No depende del inspector.
-        if (FogataMonologue.DialogueOpen)
+        // Freno global mientras haya diálogo abierto (fogata o tapera). No depende del inspector.
+        if (FogataMonologue.DialogueOpen || TaperaDialogue.DialogueOpen)
             return;
         MovePlayer();
+    }
+
+    public void AddSpeed(float amount)
+    {
+        speed += amount;
     }
 
 

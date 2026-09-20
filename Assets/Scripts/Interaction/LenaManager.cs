@@ -12,6 +12,10 @@ public class LenaManager : MonoBehaviour
     [SerializeField] TMP_Text hudText;
     [SerializeField] FogataMonologue fogataMonologue;
 
+    [Header("Cambio Rancho → Tapera al completar")]
+    [SerializeField] GameObject ranchoObject;
+    [SerializeField] GameObject taperaObject;
+
     [Header("Textos")]
     [SerializeField] string finalSpeaker = "PRUDENCIO";
     [SerializeField] string finalText = "Ya tengo suficiente. Debería volver a la fogata.";
@@ -46,6 +50,7 @@ public class LenaManager : MonoBehaviour
         if (count >= totalToCollect)
         {
             completed = true;
+            SwapRanchoTapera();
             UpdateHud();
             if (fogataMonologue != null)
             {
@@ -68,6 +73,14 @@ public class LenaManager : MonoBehaviour
         if (hudText == null)
             return;
         hudText.text = completed ? hudCompleteText : "Leña " + count + "/" + totalToCollect;
+    }
+
+    void SwapRanchoTapera()
+    {
+        if (ranchoObject != null)
+            ranchoObject.SetActive(false);
+        if (taperaObject != null)
+            taperaObject.SetActive(true);
     }
 
     void HideHud()
