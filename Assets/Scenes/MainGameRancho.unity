@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: 2070000031}
   - component: {fileID: 2070000032}
   - component: {fileID: 2070000033}
+  - component: {fileID: 2070000034}
   m_Layer: 0
   m_Name: Placeholder_palo (2)
   m_TagString: Untagged
@@ -395,7 +396,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: e5f6a7b8c9d04f3a8b1c2d3e4f5a6b7c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -981,6 +982,7 @@ GameObject:
   - component: {fileID: 2070000011}
   - component: {fileID: 2070000012}
   - component: {fileID: 2070000013}
+  - component: {fileID: 2070000014}
   m_Layer: 0
   m_Name: Placeholder_palo
   m_TagString: Untagged
@@ -1014,7 +1016,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: e5f6a7b8c9d04f3a8b1c2d3e4f5a6b7c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1485,6 +1487,7 @@ GameObject:
   - component: {fileID: 2070000021}
   - component: {fileID: 2070000022}
   - component: {fileID: 2070000023}
+  - component: {fileID: 2070000024}
   m_Layer: 0
   m_Name: Placeholder_palo (1)
   m_TagString: Untagged
@@ -1518,7 +1521,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: e5f6a7b8c9d04f3a8b1c2d3e4f5a6b7c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2308,6 +2311,7 @@ GameObject:
   - component: {fileID: 2070000041}
   - component: {fileID: 2070000042}
   - component: {fileID: 2070000043}
+  - component: {fileID: 2070000044}
   m_Layer: 0
   m_Name: Placeholder_palo (3)
   m_TagString: Untagged
@@ -2341,7 +2345,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: e5f6a7b8c9d04f3a8b1c2d3e4f5a6b7c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2460,6 +2464,7 @@ GameObject:
   - component: {fileID: 2070000051}
   - component: {fileID: 2070000052}
   - component: {fileID: 2070000053}
+  - component: {fileID: 2070000054}
   m_Layer: 0
   m_Name: Placeholder_palo (4)
   m_TagString: Untagged
@@ -2493,7 +2498,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: e5f6a7b8c9d04f3a8b1c2d3e4f5a6b7c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3590,6 +3595,96 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5, y: 1.5, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2070000014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683497554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a7b8c9d0e14f3a8b1c2d3e4f5a6b7c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteOutlineRange
+  player: {fileID: 135015115}
+  range: 5
+  requireFirstDialogue: 1
+  hideWhenDialogueOpen: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineSize: 0.015
+--- !u!114 &2070000024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063672277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a7b8c9d0e14f3a8b1c2d3e4f5a6b7c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteOutlineRange
+  player: {fileID: 135015115}
+  range: 5
+  requireFirstDialogue: 1
+  hideWhenDialogueOpen: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineSize: 0.015
+--- !u!114 &2070000034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160829406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a7b8c9d0e14f3a8b1c2d3e4f5a6b7c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteOutlineRange
+  player: {fileID: 135015115}
+  range: 5
+  requireFirstDialogue: 1
+  hideWhenDialogueOpen: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineSize: 0.015
+--- !u!114 &2070000044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010225389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a7b8c9d0e14f3a8b1c2d3e4f5a6b7c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteOutlineRange
+  player: {fileID: 135015115}
+  range: 5
+  requireFirstDialogue: 1
+  hideWhenDialogueOpen: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineSize: 0.015
+--- !u!114 &2070000054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044580401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a7b8c9d0e14f3a8b1c2d3e4f5a6b7c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteOutlineRange
+  player: {fileID: 135015115}
+  range: 5
+  requireFirstDialogue: 1
+  hideWhenDialogueOpen: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineSize: 0.015
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
